@@ -13,9 +13,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "~/*": ["./src/*"],
+      "~~/*": ["./auto/*"],
+      "@@/*": ["./testData/*"],
     }
   },
   "exclude": ["node_modules"],
