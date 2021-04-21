@@ -148,10 +148,36 @@ TSではどうでしょうか? よく知られている通りTSはJSにトラン
 
 参考 [ TypeScriptによるデコレータの基礎と実践 ]( https://qiita.com/taqm/items/4bfd26dfa1f9610128bc ) [ Decorators ]( https://www.typescriptlang.org/docs/handbook/decorators.html )
 
+型の世界と値の世界の境界をあまり意識しない Java の世界から来るとここらへんの境界の明確さに結構戸惑うので、型の世界と値の世界が別れていることを意識しながらTSコードを読んだり実装したりすると、いろいろなことに気がつくようになると思います。
 
+たとえば以下のようなコードはエラーになりますが、型の世界と値の世界が別れていることを理解していないと意味が理解できないはずです。
 
-[  ](  )
+```ts
+// 値の世界(=JS にトランスパイルされる) への宣言
+const hoge = ""
+
+// 以下のコードは  「 'hoge' は値を参照していますが、ここでは型として使用されています。'typeof hoge' を意図していましたか?ts(2749) 」 というエラーになる
+// type キーワードは 型の世界(=JSにトランスパイルされない)への宣言なので、値の世界を直接設定できない。そのため値の世界から typeof キーワードで 型情報を抽出する必要がある。
+type Fuga = hoge
+
+```
 ## 型の世界には型を対象とした演算子がある
+
+```ts
+```
+
+[ TypeScriptにおける型計算の基本 ]( https://qiita.com/recordare/items/58745ef66dd9162e4559 )
+
+[ Typescript -型と関数とクラスとインターフェース- ]( https://www.mushroom-blog.com/371/)
+[  ]( )
+[  ]( )
+[  ]( )
+[  ]( )
+[  ]( )
+[  ]( )
+[  ]( )
+[  ]( )
+
 
 型も演算対象であることに気がつく
 
@@ -159,7 +185,7 @@ TSではどうでしょうか? よく知られている通りTSはJSにトラン
 
 ## Nominal Subtyping のコードを Structural Subtyping で書き直す方法
 
-```typescript
+```ts
 interface MyClass {
   foo(a:number):string
 }
